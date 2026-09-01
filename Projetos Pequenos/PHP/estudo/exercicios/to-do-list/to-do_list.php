@@ -47,9 +47,17 @@ function exibirTarefas()
         foreach ($tarefas as $tarefa) {
             $concluida = $tarefa['concluida'] ? 'checked' : '';
             echo "<li>
-                    <input type='checkbox' data-id='{$tarefa['id']}' class='concluir-tarefa' $concluida>
+                    <form method='POST'>
+                    <input type='hidden' name='concluir_id' value='{$tarefa['id']}'>
+                    <button type='submit'>
+                    " . ($tarefa['concluida'] ? 'Desmarcar' : 'Concluir') . "
+                    </button>
+                    </form>
                     <span class='descricao'>{$tarefa['descricao']}</span>
-                    <button data-id='{$tarefa['id']}' class='excluir-tarefa'>Excluir</button>
+                    <form method='POST'>
+                    <input type='hidden' name='excluir_id' value='{$tarefa['id']}'>
+                    <button type='submit'>Excluir</button>
+                    </form>
                   </li>";
         }
         echo "</ul>";
